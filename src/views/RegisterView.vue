@@ -55,7 +55,7 @@
     </a-form-item>
   </a-form>
   <div class="logo" style="text-align: center;margin: 0 auto" >
-    <a href="https://github.com/coder-ccyuan/source-back-manager-system" >
+    <a href="https://github.com/coder-ccyuan/source-manager-vue3" >
       <GithubOutlined style="font-size: 20px"/>
       GitHub</a>
   </div>
