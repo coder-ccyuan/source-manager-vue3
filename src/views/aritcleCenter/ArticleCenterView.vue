@@ -5,6 +5,7 @@ import {onMounted, reactive, ref} from "vue";
 import {useUserStore} from "@/store/userStore.js";
 import {message} from "ant-design-vue";
 import {createWebHistory as route} from "vue-router/dist/vue-router.esm-browser.js";
+import router from "@/router/index.js";
 
 const list = ref([]);
 const open = ref(false)
@@ -22,7 +23,7 @@ const addCategory = async () => {
   const res = await categoryApi().addCategory(data)
   if (res.code === 0) {
     message.success('添加成功');
-    open.value=false;
+    open.value = false;
     route.go('/articleCenter');
   } else {
     message.error('添加失败');
@@ -34,7 +35,13 @@ const addCategory = async () => {
   <HeadView></HeadView>
   <a-divider></a-divider>
   <h1>文章分类</h1>
-  <div class="card" v-for="item in list.data" :key="item.id">
+  <div class="card" v-for="item in list.data" :key="item.id" @click="router.push({
+    path:'/articleCate',
+    query: {
+      cateId:item.id,
+      cateName: item.cateName
+    }
+  })">
     <a-card :title="item.cateName" :bordered="false" style="width: 300px">
       <p>{{ item.cateAlias }}</p>
     </a-card>

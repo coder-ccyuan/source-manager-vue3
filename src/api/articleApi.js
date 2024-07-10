@@ -26,7 +26,8 @@ export default function () {
             // 维护数据
             data = (await axios.post('/article/add', {
                 title: paper.title,
-                content: paper.content
+                content: paper.content,
+                cateId: paper.cateId
             }));
         } catch (error) {
             // 处理错误
@@ -83,6 +84,20 @@ export default function () {
         return data;
     }
 
+    async function getByCateId(cateId) {
+        try {
+            data = (await axios.get('/article/getByCateId', {
+                params: {
+                    cateId: cateId
+                }
+            }));
+        } catch (error) {
+            // 处理错误
+            console.log(error.message)
+        }
+        return data;
+    }
+
     //向外部暴露数据
-    return {getArticleList, addArticle, deleteArticle, getByAuthorId, articleUpdate}
+    return {getArticleList, addArticle, deleteArticle, getByAuthorId, articleUpdate, getByCateId}
 }
